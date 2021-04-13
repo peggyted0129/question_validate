@@ -1,0 +1,28 @@
+.top-banner {
+  @include banner('~@/assets/img/banner@2x.png', 100vh);
+}
+.remark {
+  max-width: 500px;
+  padding-left: 0px;
+  & li {
+    list-style:none;
+  }
+}
+.product-banner {
+  @include banner('~@/assets/img/bg_03.png', 100vh);
+}
+.spec-banner1 {
+  @include banner('~@/assets/img/spec0_bg@2x.png', 80vh);
+}
+.spec-banner2 {
+  @include banner('~@/assets/img/spec0_bg@2x.png', 70vh);
+}
+.spec-banner3 {
+  @include banner('~@/assets/img/spec0_bg@2x.png', 65vh);
+}
+.spec-banner4 {
+  @include banner('~@/assets/img/spec0_bg@2x.png', 80vh);
+}
+.spec-banner5{
+  @include banner('~@/assets/img/spec0_bg@2x.png', 77vh);
+}
