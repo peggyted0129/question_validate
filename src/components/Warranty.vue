@@ -33,18 +33,24 @@
           <div class="form-group text-left">
             <label class="form_label">地址<span class="text-danger" style="padding-left: 3px;">*</span></label>
             <div id="twzipcode" class="d-flex">
-              <Field v-model="form.county" class="form-control w-50" id="county" name="county"
-               :class="{ 'is-invalid': errors['county'] }" rules="required" data-role="county" data-name="county" data-style="form-control"
+              <div class="w-50">
+                <Field v-model="form.county" class="form-control" id="county" name="縣市"
+               :class="{ 'is-invalid': errors['縣市'] }" rules="required" data-role="county" data-name="county" data-style="form-control"
                 as="select"></Field>
-              <!-- <error-message name="county" class="invalid-feedback"></error-message> -->
-              <Field v-model="form.district" class="form-control w-25" id="district[]" name="district[]"
-               :class="{ 'is-invalid': errors['district[]'] }" rules="required" data-role="district" data-name="district[]" data-style="form-control"
-               as="select"></Field>
-              <!-- <error-message name="district[]" class="invalid-feedback"></error-message> -->
-              <Field v-model="form.zipcode" class="form-control w-25" id="zipcode" name="zipcode"
-               :class="{ 'is-invalid': errors['zipcode'] }" rules="required" data-role="zipcode" data-name="zipcode" data-style="form-control"
-               as="input"></Field>
-              <!-- <error-message name="zipcode" class="invalid-feedback"></error-message> -->
+                <error-message name="縣市" class="invalid-feedback"></error-message>
+              </div>
+              <div class="w-25">
+                <Field v-model="form.district" class="form-control" id="district[]" name="區域"
+                :class="{ 'is-invalid': errors['區域'] }" rules="required" data-role="district" data-name="district[]" data-style="form-control"
+                as="select"></Field>
+                <error-message name="區域" class="invalid-feedback"></error-message>
+              </div>
+              <div>
+                <Field type="text" v-model="form.zipcode" class="form-control" id="zipcode" name="郵遞區號"
+                  :class="{ 'is-invalid': errors['郵遞區號'] }" rules="required" data-role="zipcode" data-name="zipcode" data-style="form-control"
+                ></Field>
+                <error-message name="郵遞區號" class="invalid-feedback"></error-message>
+              </div>
               <!-- 原本的 jQuery 的 "郵遞區號" 程式碼 -->
               <!-- <div data-role="county" data-name="county"
                 data-style="form-control" class="w-50">
@@ -57,7 +63,7 @@
               </div> -->
             </div>
           </div>
-          <p>你選的是 {{ form.county }} 、 {{ form.district }} </p>
+          <p>你選的是 {{ form.county }} 、 {{ form.district }} 、 {{ form.zipcode }}</p>
           <p>( 為什麼 " 縣市區域 " 一定要 change 才會帶入 data 裡 )</p>
           <p class="text-danger">( 畫面的欄位內容 " 縣市區域 " 和 data 資料比對，若無 change 就會不符 )</p>
           <div class="form-group text-left">
@@ -119,12 +125,12 @@ export default {
     vm.form.zipcode = $('#twzipcode').twzipcode('get', 'zipcode')[0]  
   },
   methods: {
-    // store () {
-    //   const vm = this
-    //   vm.form.county = $('#twzipcode').twzipcode('get', 'county')[0]
-    //   vm.form.district = $('#twzipcode').twzipcode('get', 'district')[0]
-    //   vm.form.zipcode = $('#twzipcode').twzipcode('get', 'zipcode')[0]
-    // },
+    store () {
+      const vm = this
+      vm.form.county = $('#twzipcode').twzipcode('get', 'county')[0]
+      vm.form.district = $('#twzipcode').twzipcode('get', 'district')[0]
+      vm.form.zipcode = $('#twzipcode').twzipcode('get', 'zipcode')[0]
+    },
     isPhone (value) {
       const phoneNumber = /^(09)[0-9]{8}$/
       return phoneNumber.test(value) ? true : '需要正確的電話號碼'
