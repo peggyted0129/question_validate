@@ -33,7 +33,17 @@
           <div class="form-group text-left">
             <label class="form_label">地址<span class="text-danger" style="padding-left: 3px;">*</span></label>
             <div id="twzipcode" class="d-flex">
-              <div data-role="county" data-name="county"
+              <Field v-model="form.county" class="form-control w-50" id="county" name="county"
+               :class="{ 'is-invalid': errors['county'] }" rules="required" data-role="county" data-name="county" data-style="form-control"
+                as="select"></Field>
+              <Field v-model="form.district" class="form-control w-25" id="district[]" name="district[]"
+               :class="{ 'is-invalid': errors['district[]'] }" rules="required" data-role="district" data-name="district[]" data-style="form-control"
+               as="select"></Field>
+              <Field v-model="form.zipcode" class="form-control w-25" id="zipcode" name="zipcode"
+               :class="{ 'is-invalid': errors['zipcode'] }" rules="required" data-role="zipcode" data-name="zipcode" data-style="form-control"
+               as="input"></Field>
+              <!-- 原本的 jQuery 的 "郵遞區號" 程式碼 -->
+              <!-- <div data-role="county" data-name="county"
                 data-style="form-control" class="w-50">
               </div>
               <div data-role="district" data-name="district[]"
@@ -41,11 +51,8 @@
               </div>
               <div data-role="zipcode" data-name="zipcode"
                 data-style="form-control" class="w-25">
-              </div>
+              </div> -->
             </div>
-            <span v-if="errors.zipcode">
-              <small class="text-danger">{{ errors.zipcode[0] }}</small>
-            </span>
           </div>
           <div class="form-group text-left">
             <Field v-model="form.address" class="form-control" type="text" id="地址" name="地址"
@@ -81,7 +88,7 @@ export default {
         address: '',
         email: null,
         invoice: null,
-        shop: '',
+        shop: null,
         seller: null,
         others: null
       }

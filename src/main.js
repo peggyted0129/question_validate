@@ -33,8 +33,3 @@ app.mount('#app')
 
 app.config.productionTip = false
 app.use(VueAxios, axios)
-
-app.Vue.createApp({
-  router,
-  render: (h) => h(App)
-}).$mount('#app')
