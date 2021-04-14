@@ -39,11 +39,12 @@
                 as="select"></Field>
                 <error-message name="county" class="invalid-feedback"></error-message>
               </div>
-              <!-- <div class="w-25"> -->
-                <Field v-model="form.district" class="form-control w-25" id="district[]" name="district[]"
+              <div class="w-25">
+                <Field v-model="form.district" class="form-control" id="district[]" name="district[]"
                 :class="{ 'is-invalid': errors['district[]'] }" rules="required" data-role="district" data-name="district[]" data-style="form-control"
                 as="select"></Field>
-              <!-- <error-message name="district[]" class="invalid-feedback"></error-message> -->
+              <error-message name="district[]" class="invalid-feedback"></error-message>
+              </div>
               <div class="w-25">
                 <Field type="text" v-model="form.zipcode" class="form-control" id="zipcode" name="zipcode"
                   :class="{ 'is-invalid': errors['zipcode'] }" rules="required" data-role="zipcode" data-name="zipcode" data-style="form-control"></Field>
