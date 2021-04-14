@@ -36,12 +36,15 @@
               <Field v-model="form.county" class="form-control w-50" id="county" name="county"
                :class="{ 'is-invalid': errors['county'] }" rules="required" data-role="county" data-name="county" data-style="form-control"
                 as="select"></Field>
+              <error-message name="county" class="invalid-feedback"></error-message>
               <Field v-model="form.district" class="form-control w-25" id="district[]" name="district[]"
                :class="{ 'is-invalid': errors['district[]'] }" rules="required" data-role="district" data-name="district[]" data-style="form-control"
                as="select"></Field>
+              <error-message name="district[]" class="invalid-feedback"></error-message>
               <Field v-model="form.zipcode" class="form-control w-25" id="zipcode" name="zipcode"
                :class="{ 'is-invalid': errors['zipcode'] }" rules="required" data-role="zipcode" data-name="zipcode" data-style="form-control"
                as="input"></Field>
+              <error-message name="zipcode" class="invalid-feedback"></error-message>
               <!-- 原本的 jQuery 的 "郵遞區號" 程式碼 -->
               <!-- <div data-role="county" data-name="county"
                 data-style="form-control" class="w-50">
