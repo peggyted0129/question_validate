@@ -21,6 +21,15 @@ configure({
   validateOnInput: true
 })
 setLocale('zh_TW')
+/* 自訂驗證內容顯示
+generateMessage: localize({
+  zh_TW: {
+   messages: {
+    required: context => `${context.field} 是一定要輸入的喔!`
+   }
+  }
+})
+*/
 
 axios.defaults.withCredentials = true
 window.$ = jquery

@@ -43,10 +43,10 @@
                 <Field v-model="form.district" class="form-control" id="district[]" name="district[]"
                 :class="{ 'is-invalid': errors['district[]'] }" rules="required" data-role="district" data-name="district[]" data-style="form-control"
                 as="select"></Field>
-              <error-message name="district[]" class="invalid-feedback"></error-message>
+                <error-message name="district[]" class="invalid-feedback"></error-message>
               </div>
               <div class="w-25">
-                <Field type="text" v-model="form.zipcode" class="form-control" id="zipcode" name="zipcode"
+                <Field type="text" v-model="form.zipcode" class="form-control" id="zipcode" name="zipcode" readonly
                   :class="{ 'is-invalid': errors['zipcode'] }" rules="required" data-role="zipcode" data-name="zipcode" data-style="form-control"></Field>
                 <error-message name="zipcode" class="invalid-feedback"></error-message>
               </div>
@@ -92,8 +92,35 @@
 export default {
   data () {
     const schema = {
-      保固序號: 'required|min:10',
-      手機: 'required|min:10'
+      // 保固序號: 'required|min:10',
+      // 手機: 'required|min:10'
+      shop: (value) => {
+        if (value) {
+          return true;
+        }
+        return '您需要選擇 "購買通路"';
+      },
+      郵遞區號: (value) => {
+        if (value) {
+          return true;
+        }
+        return '請確實填寫 "縣市、區域、郵遞區號"';
+      }, 
+      保固序號: (value) => {
+        /* 以下註解這段 ( 無法驗證 )
+        const codeData = ['0620EZQULA', '0620EZQULB', '0620EZQULC', '0620EZQULD', '0620EZQULE']
+        codeData.Each(item => {
+          if (value == item) {
+            return true;
+          }
+          return '請確實填寫 "保固序號"';
+        })
+        */
+        if (value == '0620EZQABC') {
+          return true;
+        }
+        return '請確實填寫 "保固序號"';
+      }
     }
     return {
       sex: '',
@@ -108,7 +135,7 @@ export default {
         address: '',
         email: null,
         invoice: null,
-        shop: null,
+        shop: '',
         seller: null,
         others: null
       }
@@ -148,6 +175,31 @@ export default {
       this.form.seller = null
       this.form.others = null
       $('#twzipcode').twzipcode('reset')
+    }
+  },
+  watch: {
+    'form.county': function (val) {
+      const vm = this;
+      if (val) {
+        this.$nextTick(function () {
+        vm.form.county = val;
+        setTimeout(function () {
+          vm.form.district = $('#twzipcode').twzipcode('get', 'district')[0];
+          vm.form.zipcode = $('#twzipcode').twzipcode('get', 'zipcode')[0]
+        }, 0)
+        })
+      }
+    },
+    'form.district': function (val) {
+      const vm = this;
+      if (val) {
+        this.$nextTick(function () {
+        vm.form.district = val;
+        setTimeout(function () {
+          vm.form.zipcode = $('#twzipcode').twzipcode('get', 'zipcode')[0]
+        }, 0)
+        })
+      }
     }
   }
 }
