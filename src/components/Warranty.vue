@@ -107,19 +107,21 @@ export default {
         return '請確實填寫 "縣市、區域、郵遞區號"';
       }, 
       保固序號: (value) => {
-        /* 以下註解這段 ( 無法驗證 )
+        /* 以下註解這段 ( 無法驗證 ) */
         const codeData = ['0620EZQULA', '0620EZQULB', '0620EZQULC', '0620EZQULD', '0620EZQULE']
-        codeData.Each(item => {
+        codeData.forEach(item => {
           if (value == item) {
             return true;
           }
           return '請確實填寫 "保固序號"';
         })
-        */
+        
+        /*
         if (value == '0620EZQABC') {
           return true;
         }
         return '請確實填寫 "保固序號"';
+        */
       }
     }
     return {
