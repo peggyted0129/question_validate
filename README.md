@@ -1,5 +1,7 @@
 # mira-teeth-vue3
+## git push origin master
 
+---
 ## Project setup
 ```
 npm install
